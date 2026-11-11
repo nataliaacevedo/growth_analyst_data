@@ -1,0 +1,5 @@
+4. Critique and communicate
+A colleague provides this unverified conclusion:
+“Meta ROAS increased from 2.5 to 3.0, so acquisition efficiency improved 20%. The two platforms generated 110 new customers in week two. Checkout performance is stable because Meta's checkout rate stayed at 1%. Increase Meta spend 25% immediately.”
+Respond to the colleague in no more than 250 words. Address the four claims with evidence, your acquisition finding, recommended action, two follow-up data pulls and their decision relevance, and the main limitation.
+Include one supporting table or chart; an existing result table is sufficient and excluded from the word limit. Visual styling is not scored.
