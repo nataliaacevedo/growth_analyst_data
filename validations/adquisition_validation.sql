@@ -8,8 +8,8 @@ WITH checks AS (
 
     SELECT
         'spend'                                                  AS check_name
-        , (SELECT spend FROM acquisition_weekly)                  AS output_value
-        , (SELECT spend FROM channel_week)                                AS source_value
+        , (SELECT SUM(spend) FROM acquisition_weekly)                  AS output_value
+        , (SELECT SUM(spend) FROM channel_week)                                AS source_value
 
     UNION ALL
 
