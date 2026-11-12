@@ -97,7 +97,8 @@ WITH all_sessions AS (
     SELECT session_id, week_start, channel, event_type FROM purchase
 )
 
-SELECT
+, final AS (
+    SELECT
     week_start
     , channel
     , COUNT(DISTINCT CASE WHEN event_type = 'session'        THEN session_id END) AS sessions
@@ -107,4 +108,21 @@ SELECT
     , COUNT(DISTINCT CASE WHEN event_type = 'Purchase'       THEN session_id END) AS purchases
 FROM funnel
 GROUP BY week_start, channel
+ORDER BY week_start, channel
+)
+
+SELECT
+    week_start
+    , channel
+    , sessions
+    , product_views
+    , add_to_carts
+    , checkouts
+    , purchases
+    , product_views * 1.0 / NULLIF(sessions, 0)       AS session_to_view_rate
+    , add_to_carts  * 1.0 / NULLIF(product_views, 0)  AS view_to_cart_rate
+    , checkouts     * 1.0 / NULLIF(add_to_carts, 0)   AS cart_to_checkout_rate
+    , purchases     * 1.0 / NULLIF(checkouts, 0)      AS checkout_to_purchase_rate
+    , checkouts     * 1.0 / NULLIF(sessions, 0)       AS session_to_checkout_rate
+FROM counts
 ORDER BY week_start, channel
